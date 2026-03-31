@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio Cahya Ruminah</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;transition:.3s;}
+html{scroll-behavior:smooth;}
+body{
+background:linear-gradient(to bottom,#0f2027,#203a43,#2c5364);
+color:white;font-family:sans-serif;
+}
+.dark{background:#111;color:#eee;}
+
+.navbar{
+position:sticky;top:0;
+background:rgba(0,0,0,.3);
+backdrop-filter:blur(10px);
+padding:15px;z-index:1000;
+display:flex;justify-content:center;gap:20px;
+}
+
+.menu a{
+color:white;text-decoration:none;
+margin:0 15px;position:relative;
+}
+.menu a.active{color:cyan;}
+.menu a::after{
+content:"";width:0;height:2px;
+background:cyan;position:absolute;
+bottom:-5px;left:0;
+}
+.menu a:hover::after{width:100%;}
+
+.toggle-btn{
+background:cyan;border:none;
+padding:5px 10px;cursor:pointer;
+border-radius:5px;
+}
+
+.hero{text-align:center;margin:60px 0;}
+.hero img{width:200px;border-radius:50%;}
+
+.rainbow-text{
+font-size:28px;font-weight:bold;
+background:linear-gradient(90deg,red,orange,yellow,green,cyan,blue,violet);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-size:400%;
+animation:rainbow 5s linear infinite;
+}
+@keyframes rainbow{100%{background-position:400%;}}
+
+#typing::after{
+content:"|";animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+.card{
+background:rgba(255,255,255,.1);
+backdrop-filter:blur(10px);
+margin:20px;padding:25px;
+border-radius:15px;
+}
+.card:hover{transform:translateY(-10px);}
+.card img{width:100%;border-radius:10px;margin-bottom:10px;}
+
+.hidden{opacity:0;transform:translateY(40px);}
+.show{opacity:1;transform:translateY(0);}
+
+footer{
+background:rgba(0,0,0,.5);
+padding:20px;text-align:center;
+}
+
+#topBtn{
+position:fixed;bottom:20px;right:20px;
+padding:10px;border:none;border-radius:50%;
+background:cyan;cursor:pointer;display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="menu">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#project">Project</a>
+<a href="#contact">Contact</a>
+</div>
+<button class="toggle-btn" onclick="toggleMode()">🌙</button>
+</div>
+
+<section id="home" class="hero">
+<img src="fayira.jpg">
+<h1 class="rainbow-text"><span id="typing"></span></h1>
+</section>
+
+<section id="about" class="hidden">
+<div class="card">
+<img src="treader.jpg">
+
+<p>Perkenalkan, saya Cahya Ruminah, seorang siswa kelas 12 IPS 1 di Sekolah Alhasaniyah. Saya lahir pada 09 Juli 2008 dan saat ini berdomisili di Jatimulya.</p>
+
+<p>Saya memiliki hobi yang unik, yaitu gemar mencari dan mengeksplorasi berbagai hal baru, baik itu informasi, peluang, maupun pengalaman yang dapat menambah wawasan. Ketertarikan ini juga mendorong saya untuk terus berkembang dan berpikir kreatif.</p>
+
+<p>Dalam hal minat, saya sangat tertarik pada dunia bisnis, khususnya dalam memahami peluang usaha dan cara mengembangkannya. Saya percaya bahwa dengan kemauan belajar dan usaha yang konsisten, setiap peluang dapat menjadi sesuatu yang bernilai.</p>
+
+<p>Adapun tujuan saya adalah untuk menjadi pribadi yang mandiri, kreatif, dan mampu menciptakan peluang usaha yang bermanfaat, baik untuk diri sendiri maupun orang lain di masa depan.</p>
+</div>
+</section>
+
+<section id="project">
+
+<div class="card hidden">
+<img src="forex.jpg">
+<h2>Analisis Forex</h2>
+<p>mempelajari dan menganalisis pergerakan harga di pasar Forex dengan menggunakan pendekatan dasar seperti support, resistance, dan tren.</p>
+</div>
+
+<div class="card hidden">
+<img src="BISNIS.JPG">
+<h2>Proyek Bisnis</h2>
+<p>Bisnis merupakan suatu kegiatan ekonomi yang dilakukan oleh individu atau kelompok dengan tujuan untuk menyediakan barang maupun jasa guna memenuhi kebutuhan masyarakat serta memperoleh keuntungan.</p>
+</div>
+
+</section>
+
+<footer id="contact">
+<a href="https://wa.me/62895320548137">WhatsApp</a> |
+<a href="https://instagram.com/Y04raa77">Instagram</a>
+<p>© 2026 Cahya Ruminah</p>
+</footer>
+
+<button id="topBtn">⬆️</button>
+
+<script>
+// DARK MODE
+function toggleMode(){
+document.body.classList.toggle("dark");
+}
+
+// BACK TO TOP
+const topBtn=document.getElementById("topBtn");
+window.onscroll=()=>{
+topBtn.style.display=(document.documentElement.scrollTop>200)?"block":"none";
+};
+topBtn.onclick=()=>{
+window.scrollTo({top:0,behavior:'smooth'});
+};
+
+// TYPING
+const text="Hai!! Saya Cahya Ruminah\nSiswi Alhasaniyah XII IPS 1";
+let i=0,del=false;
+function type(){
+let el=document.getElementById("typing");
+if(!del){
+el.innerHTML=text.substring(0,i).replace("\n","<br>");
+i++;
+if(i>text.length){del=true;setTimeout(type,2000);return;}
+}else{
+el.innerHTML=text.substring(0,i).replace("\n","<br>");
+i--;
+if(i<0){del=false;setTimeout(type,500);return;}
+}
+setTimeout(type,del?40:80);
+}
+type();
+
+// SCROLL
+const obs=new IntersectionObserver(e=>{
+e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show");});
+});
+document.querySelectorAll(".hidden").forEach(el=>obs.observe(el));
+
+// NAV ACTIVE
+const links=document.querySelectorAll(".menu a");
+window.addEventListener("scroll",()=>{
+let cur="";
+document.querySelectorAll("section").forEach(sec=>{
+if(pageYOffset>=sec.offsetTop-150){cur=sec.id;}
+});
+links.forEach(a=>{
+a.classList.remove("active");
+if(a.getAttribute("href")=="#"+cur)a.classList.add("active");
+});
+});
+</script>
+
+</body>
+</html>
+
